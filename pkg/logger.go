@@ -1,4 +1,4 @@
-package discord_logger
+package discordlogger
 
 import (
 	"github.com/bwmarrin/discordgo"
@@ -43,44 +43,50 @@ func (logger *Logger) Sprint(message *Message) string {
 	return message.Sprint()
 }
 
-// SendMessage send a Message
+// sendMessage send a Message
 //
 // Case an error occurs while sending the message, a call to log.Fatal will be triggered.
-func (logger *Logger) SendMessage(message *Message) {
+func (logger *Logger) sendMessage(message *Message) {
 	_, err := logger.session.ChannelMessageSend(logger.channel, logger.Sprint(message))
 	if err != nil {
 		log.Fatalln("Failed to send message", err)
 	}
 }
 
-// Info Send a Message with the severity of INFO
+// Info Sends a Message with the severity of INFO
 func (logger *Logger) Info(message *Message) {
-	message.SetLevel("INFO")
-	logger.SendMessage(message)
+	message.setLevel("INFO")
+	logger.sendMessage(message)
 }
 
-// Warn Send a Message with the severity of WARN
+// Warn Sends a Message with the severity of WARN
 func (logger *Logger) Warn(message *Message) {
-	message.SetLevel("WARN")
-	logger.SendMessage(message)
+	message.setLevel("WARN")
+	logger.sendMessage(message)
 }
 
-// Error Send a Message with the severity of ERROR
+// Error Sends a Message with the severity of ERROR
 func (logger *Logger) Error(message *Message) {
-	message.SetLevel("ERROR")
-	logger.SendMessage(message)
+	message.setLevel("ERROR")
+	logger.sendMessage(message)
 }
 
-// Fatal Send a Message with the severity of FATAL followed by a call to os.Exit(1)
+// Fatal Sends a Message with the severity of FATAL followed by a call to os.Exit(1)
 func (logger *Logger) Fatal(message *Message) {
-	message.SetLevel("FATAL")
-	logger.SendMessage(message)
+	message.setLevel("FATAL")
+	logger.sendMessage(message)
 	os.Exit(1)
 }
 
-// Panic Send a Message with the severity of Panic followed by a call to panic()
+// Panic Sends a Message with the severity of Panic followed by a call to panic()
 func (logger *Logger) Panic(message *Message) {
-	message.SetLevel("PANIC")
-	logger.SendMessage(message)
+	message.setLevel("PANIC")
+	logger.sendMessage(message)
 	panic(message.error)
+}
+
+// Custom Sends a Message with a customized severity level
+func (logger *Logger) Custom(level string, message *Message) {
+	message.setLevel(level)
+	logger.sendMessage(message)
 }
