@@ -1,4 +1,4 @@
-package discordlogger
+package message
 
 import (
 	"fmt"
@@ -30,8 +30,8 @@ func NewMessage(subject string, err error, content ...string) *Message {
 	return message
 }
 
-// setLevel defines the severity of a Message
-func (message *Message) setLevel(level string) {
+// SetLevel defines the severity of a Message, automatically defined by the Logger
+func (message *Message) SetLevel(level string) {
 	message.level = level
 }
 
@@ -88,7 +88,7 @@ func (message *Message) Sprint() string {
 			"Level: %s\n"+
 			"Moment: %s\n"+
 			"Content:\n\t%s\n"+
-			"Error: \n\t%s\n"+
+			"Error: \n\t%v\n"+
 			"Stack Trace:%s"+
 			"\n```",
 		message.subject,
