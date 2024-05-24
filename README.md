@@ -4,6 +4,7 @@ This project is a simple logger that uses a Discord bot to send logs to a channe
 
 ## Features
 
+- [x] Error support with stack trace
 - [x] Supports log levels such as:
   - Info
   - Warn
@@ -13,8 +14,9 @@ This project is a simple logger that uses a Discord bot to send logs to a channe
   - Panic
     - Followed by a call to panic
 - [x] Supports a custom level
-- [x] Error support with stack trace
+- [x] Logging with extra content besides subject and error
 - [x] Logging with a customized output format
+
 
 ## Requirements
 
