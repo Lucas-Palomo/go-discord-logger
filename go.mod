@@ -1,6 +1,6 @@
 module github.com/Lucas-Palomo/go-discord-logger
 
-go 1.22
+go 1.21
 
 require (
 	github.com/bwmarrin/discordgo v0.28.1
